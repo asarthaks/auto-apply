@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    container_name: autoapply
+    env_file:
+      - .env
+    ports:
+      - "6961:6961"
+    volumes:
+      - .:/code
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Default command runs smoke test; override for Jupyter:
+    # docker compose run --rm --service-ports app jupyter-notebook ...
